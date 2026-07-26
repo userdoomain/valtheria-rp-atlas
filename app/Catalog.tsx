@@ -7,6 +7,7 @@ import catalog from "./data/catalog.json";
 
 type Entry = (typeof catalog)[number];
 type Filter = "all" | "race" | "class";
+const basePath = process.env.GITHUB_ACTIONS ? "/valtheria-rp-atlas" : "";
 
 const fold = (value: string) =>
   value.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLocaleLowerCase("pt-BR");
@@ -174,7 +175,13 @@ function EntryCard({ entry }: { entry: Entry }) {
         <div className="card-identity">
           {entry.icon && (
             <span className="origin-icon">
-              <Image src={entry.icon} width={48} height={48} alt="" title={entry.iconItem} />
+              <Image
+                src={`${basePath}${entry.icon}`}
+                width={48}
+                height={48}
+                alt={`Ícone de ${entry.name}`}
+                title={entry.iconItem}
+              />
             </span>
           )}
           <span className="type">{isRace ? "🧬 Raça / Origin" : "⚔️ Classe"}</span>
