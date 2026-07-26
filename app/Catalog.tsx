@@ -9,10 +9,75 @@ type Filter = "all" | "race" | "class";
 const fold = (value: string) =>
   value.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLocaleLowerCase("pt-BR");
 
+const englishAliases: Record<string, string> = {
+  "Anão": "Dwarf",
+  "Anão Superior": "Superior Dwarf",
+  "Aracnídeo": "Arachnid",
+  "Aviano": "Avian",
+  "Bela Adormecida": "Sleeping Beauty",
+  "Chapeuzinho Vermelho": "Red Riding Hood",
+  "Ciborgue": "Cyborg",
+  "Cinderela": "Cinderella",
+  "Demônio": "Demon Incubus",
+  "Dragão verde": "Green Dragon",
+  "Dragão vermelho": "Red Dragon",
+  "Elytriano": "Elytrian",
+  "Enderiano": "Enderian",
+  "Fada Mágica": "Magical Fly Fairy",
+  "Fantasma": "Phantom",
+  "Felino": "Feline",
+  "Fênix": "Phoenix",
+  "Humano": "Human",
+  "Kraken": "The Kraken",
+  "Lobo Mau": "Big Bad Wolf",
+  "Morto-vivo": "Undead",
+  "Mímico": "Mimic",
+  "Nascido das Chamas": "Blazeborn",
+  "Pequena Sereia": "Little Mermaid",
+  "Príncipe Sapo": "Frog Prince",
+  "Sereia": "Siren",
+  "Sereiano": "Merling Mermaid",
+  "Valquíria — Mythic Origins": "Valkyrie",
+  "Valquíria — SkyMC Origins": "Valkyrie",
+  "Arqueiro — OJS RPG Origins": "Archer",
+  "Arqueiro — RPG Origins": "Archer",
+  "Bardo — OJS RPG Origins": "Bard",
+  "Bardo — RPG Origins": "Bard",
+  "Brutamontes — OJS RPG Origins": "Brute",
+  "Brutamontes — RPG Origins": "Brute",
+  "Caçador": "Hunter",
+  "Cavaleiro": "Knight",
+  "Ceifador": "Reaper",
+  "Clérigo — OJS RPG Origins": "Cleric",
+  "Clérigo — RPG Origins": "Cleric",
+  "Curandeiro": "Healer",
+  "Defensor": "Tank Defender",
+  "Guerreiro": "Warrior",
+  "Ladino": "Rogue",
+  "Ladrão — OJS RPG Origins": "Thief",
+  "Ladrão — RPG Origins": "Thief",
+  "Lâmina Arcana": "Spellblade",
+  "Mago da Natureza": "Nature Mage",
+  "Mago de Evocação": "Evoker Mage",
+  "Mago de Fogo": "Fire Mage",
+  "Mago de Gelo": "Frost Ice Mage",
+  "Mago de Relâmpago": "Lightning Mage",
+  "Mago de Sangue": "Blood Mage",
+  "Mago do Ender": "Ender Mage",
+  "Paladino": "Paladin",
+  "Humano Variante": "Variant Human",
+};
+
+const likelyActive = (power: Entry["powers"][number]) =>
+  /\b(ativar|ativa|pression|tecla|dispar|lança|invoca|toggle|active|activate|cooldown|recarga)\b/i
+    .test(`${power.name} ${power.description}`);
+
 function searchText(entry: Entry) {
   return fold([
     entry.name,
+    englishAliases[entry.name] ?? "",
     entry.id,
+    entry.id.replace(/[:/_-]/g, " "),
     entry.mod,
     entry.impact,
     entry.description,
@@ -101,6 +166,7 @@ function EntryCard({ entry }: { entry: Entry }) {
         <span className="impact">{entry.impact}</span>
       </div>
       <h2>{entry.name}</h2>
+      {englishAliases[entry.name] && <p className="alias">Em inglês: {englishAliases[entry.name]}</p>}
       <p className="description">{entry.description}</p>
       <div className="meta">
         <span>✦ {entry.powers.length} {entry.powers.length === 1 ? "poder" : "poderes"}</span>
@@ -114,7 +180,7 @@ function EntryCard({ entry }: { entry: Entry }) {
             <ul className="powers">
               {entry.powers.map((power) => (
                 <li key={power.id}>
-                  <h3>{power.name}</h3>
+                  <h3>{power.name} {likelyActive(power) && <mark>habilidade ativa</mark>}</h3>
                   <p>{power.description}</p>
                   <code>{power.id}</code>
                 </li>

@@ -50,11 +50,27 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="how-to" aria-labelledby="como-usar-title">
+        <p className="section-kicker">PASSO A PASSO</p>
+        <h2 id="como-usar-title">Como usar uma habilidade</h2>
+        <ol>
+          <li><span>01</span><div><strong>Escolha sua raça e classe</strong><p>Finalize as duas telas de seleção antes de testar os poderes.</p></div></li>
+          <li><span>02</span><div><strong>Leia a ficha abaixo</strong><p>Abra “Ver poderes e detalhes”. Poderes marcados como <em>habilidade ativa</em> são os candidatos que precisam de tecla.</p></div></li>
+          <li><span>03</span><div><strong>Use Y primeiro</strong><p>O <kbd>Y</kbd> executa o primeiro poder ativo da sua escolha: ataque, transformação, impulso ou efeito, dependendo da ficha.</p></div></li>
+          <li><span>04</span><div><strong>Use H para o segundo</strong><p>O <kbd>H</kbd> executa o segundo poder ativo, quando ele existe. Observe a barra, recarga e condições descritas pelo poder.</p></div></li>
+        </ol>
+        <aside>
+          <strong>Importante:</strong> poderes passivos funcionam automaticamente e não usam tecla.
+          Algumas habilidades exigem água, chão, alvo, energia ou o fim da recarga. Se Y/H não fizer nada,
+          confira essas condições e se aquela raça ou classe realmente possui um poder ativo naquele espaço.
+        </aside>
+      </section>
+
       <section className="catalog-wrap">
         <div className="catalog-heading">
           <p className="section-kicker">O GRIMÓRIO</p>
           <h2>Raças, Origins e classes</h2>
-          <p>Abra qualquer ficha para ler os poderes, vantagens, limitações e o ID técnico.</p>
+          <p>Pesquise em português ou inglês e abra qualquer ficha para ler poderes, vantagens, limitações e IDs.</p>
         </div>
         <Catalog />
       </section>
