@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import type { ReactNode } from "react";
+import { useMemo, useState } from "react";
 import catalog from "./data/catalog.json";
 
 type Entry = (typeof catalog)[number];
@@ -85,19 +86,10 @@ function searchText(entry: Entry) {
   ].join(" "));
 }
 
-export function Catalog() {
+export function Catalog({ children }: { children: ReactNode }) {
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState<Filter>("all");
   const needle = fold(query.trim());
-
-  useEffect(() => {
-    const receiveSearch = (event: Event) => {
-      setQuery((event as CustomEvent<string>).detail ?? "");
-      setFilter("all");
-    };
-    window.addEventListener("valtheria-search", receiveSearch);
-    return () => window.removeEventListener("valtheria-search", receiveSearch);
-  }, []);
 
   const entries = useMemo(
     () =>
@@ -116,8 +108,13 @@ export function Catalog() {
   };
 
   return (
-    <>
-      <section className="controls" id="catalogo" aria-label="Pesquisa do catálogo">
+    <section className="catalog-wrap">
+      <div className="catalog-heading" id="catalogo">
+        <p className="section-kicker">O GRIMÓRIO</p>
+        <h2>Raças, Origins e classes</h2>
+        <p>Pesquise em português ou inglês e abra qualquer ficha para ler poderes, vantagens, limitações e IDs.</p>
+      </div>
+      <section className="controls" aria-label="Pesquisa do catálogo">
         <label className="search">
           <span aria-hidden="true">⌕</span>
           <input
@@ -150,6 +147,8 @@ export function Catalog() {
         {entries.length} {entries.length === 1 ? "resultado encontrado" : "resultados encontrados"}
       </p>
 
+      <div className="guide-content">{children}</div>
+
       {entries.length > 0 ? (
         <section className="grid" aria-live="polite">
           {entries.map((entry) => <EntryCard key={`${entry.type}-${entry.id}`} entry={entry} />)}
@@ -162,7 +161,7 @@ export function Catalog() {
           <button onClick={() => { setQuery(""); setFilter("all"); }}>Limpar filtros</button>
         </section>
       )}
-    </>
+    </section>
   );
 }
 
