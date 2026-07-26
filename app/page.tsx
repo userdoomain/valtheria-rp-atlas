@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Catalog } from "./Catalog";
+import { Keybinds } from "./Keybinds";
 
 export const metadata: Metadata = {
   title: "Atlas de Raças & Classes | Valtheria RP",
@@ -65,6 +66,8 @@ export default function Home() {
           confira essas condições e se aquela raça ou classe realmente possui um poder ativo naquele espaço.
         </aside>
       </section>
+
+      <Keybinds />
 
       <section className="catalog-wrap">
         <div className="catalog-heading">
