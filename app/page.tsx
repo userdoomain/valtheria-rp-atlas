@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Catalog } from "./Catalog";
+import { HeroSearch } from "./HeroSearch";
 import { Keybinds } from "./Keybinds";
 
 export const metadata: Metadata = {
@@ -22,6 +23,7 @@ export default function Home() {
             Todas as raças, Origins e classes atualmente disponíveis, traduzidas
             para português e reunidas em um grimório fácil de pesquisar.
           </p>
+          <HeroSearch />
           <div className="stats">
             <span><strong>44</strong> raças & Origins</span>
             <i />

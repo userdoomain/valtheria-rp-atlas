@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import catalog from "./data/catalog.json";
 
 type Entry = (typeof catalog)[number];
@@ -89,6 +89,15 @@ export function Catalog() {
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState<Filter>("all");
   const needle = fold(query.trim());
+
+  useEffect(() => {
+    const receiveSearch = (event: Event) => {
+      setQuery((event as CustomEvent<string>).detail ?? "");
+      setFilter("all");
+    };
+    window.addEventListener("valtheria-search", receiveSearch);
+    return () => window.removeEventListener("valtheria-search", receiveSearch);
+  }, []);
 
   const entries = useMemo(
     () =>
