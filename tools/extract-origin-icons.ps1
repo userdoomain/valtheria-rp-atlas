@@ -134,5 +134,6 @@ foreach ($item in $catalog) {
   }
 }
 
-$catalog | ConvertTo-Json -Depth 12 | Set-Content -LiteralPath $catalogPath -Encoding utf8
+$jsonOutput = $catalog | ConvertTo-Json -Depth 12
+[System.IO.File]::WriteAllText($catalogPath, $jsonOutput + [Environment]::NewLine, [System.Text.UTF8Encoding]::new($false))
 Write-Output "Ícones exportados: $exported de $($catalog.Count)"
