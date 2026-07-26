@@ -2,6 +2,7 @@
 
 import type { ReactNode } from "react";
 import { useMemo, useState } from "react";
+import Image from "next/image";
 import catalog from "./data/catalog.json";
 
 type Entry = (typeof catalog)[number];
@@ -147,8 +148,6 @@ export function Catalog({ children }: { children: ReactNode }) {
         {entries.length} {entries.length === 1 ? "resultado encontrado" : "resultados encontrados"}
       </p>
 
-      <div className="guide-content">{children}</div>
-
       {entries.length > 0 ? (
         <section className="grid" aria-live="polite">
           {entries.map((entry) => <EntryCard key={`${entry.type}-${entry.id}`} entry={entry} />)}
@@ -161,6 +160,8 @@ export function Catalog({ children }: { children: ReactNode }) {
           <button onClick={() => { setQuery(""); setFilter("all"); }}>Limpar filtros</button>
         </section>
       )}
+
+      <div className="guide-content">{children}</div>
     </section>
   );
 }
@@ -170,7 +171,14 @@ function EntryCard({ entry }: { entry: Entry }) {
   return (
     <article className={`card ${entry.type}`} id={entry.anchor}>
       <div className="card-top">
-        <span className="type">{isRace ? "🧬 Raça / Origin" : "⚔️ Classe"}</span>
+        <div className="card-identity">
+          {entry.icon && (
+            <span className="origin-icon">
+              <Image src={entry.icon} width={48} height={48} alt="" title={entry.iconItem} />
+            </span>
+          )}
+          <span className="type">{isRace ? "🧬 Raça / Origin" : "⚔️ Classe"}</span>
+        </div>
         <span className="impact">{entry.impact}</span>
       </div>
       <h2>{entry.name}</h2>
