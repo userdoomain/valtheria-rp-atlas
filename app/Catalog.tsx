@@ -71,6 +71,28 @@ const englishAliases: Record<string, string> = {
   "Humano Variante": "Variant Human",
 };
 
+const modLabels: Record<string, string> = {
+  "origins-": "Origins",
+  "rpg_origins-": "RPG Origins",
+  "ojs_rpg_origins-": "OJS RPG Origins",
+  "skymc_origins-": "SkyMC Origins",
+  "dragon_origins-": "Dragon Origins",
+  "fairytale-": "Fairytale Origins",
+  "mythic-": "Mythic Origins",
+  "classes-": "Classes",
+};
+
+const modColors: Record<string, string> = {
+  "origins-": "#5a9e6f",
+  "rpg_origins-": "#7a5fc0",
+  "ojs_rpg_origins-": "#a48fe0",
+  "skymc_origins-": "#4a8ab5",
+  "dragon_origins-": "#c05c5c",
+  "fairytale-": "#c9a84c",
+  "mythic-": "#c05cb0",
+  "classes-": "#c9843c",
+};
+
 const likelyActive = (power: Entry["powers"][number]) =>
   /\b(ativar|ativa|pression|tecla|dispar|lança|invoca|toggle|active|activate|cooldown|recarga)\b/i
     .test(`${power.name} ${power.description}`);
@@ -88,6 +110,13 @@ function searchText(entry: Entry) {
   ].join(" "));
 }
 
+function getModKey(icon: string): string {
+  for (const key of Object.keys(modLabels)) {
+    if (icon.includes(key)) return key;
+  }
+  return "origins-";
+}
+
 export function Catalog({ children }: { children: ReactNode }) {
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState<Filter>("all");
@@ -103,6 +132,9 @@ export function Catalog({ children }: { children: ReactNode }) {
     [filter, needle],
   );
 
+  const races = entries.filter((e) => e.type === "race");
+  const classes = entries.filter((e) => e.type === "class");
+
   const counts = {
     all: catalog.length,
     race: catalog.filter((entry) => entry.type === "race").length,
@@ -113,9 +145,13 @@ export function Catalog({ children }: { children: ReactNode }) {
     <section className="catalog-wrap">
       <div className="catalog-heading" id="catalogo">
         <p className="section-kicker">O GRIMÓRIO</p>
-        <h2>Raças, Origins e classes</h2>
-        <p>Pesquise em português ou inglês e abra qualquer ficha para ler poderes, vantagens, limitações e IDs.</p>
+        <h2>Raças, Origins e Classes</h2>
+        <p>
+          Pesquise em português ou inglês. Raças & Origins e Classes estão separadas
+          e cada card exibe o ícone real extraído do mod correspondente.
+        </p>
       </div>
+
       <section className="controls" aria-label="Pesquisa do catálogo">
         <label className="search">
           <span aria-hidden="true">⌕</span>
@@ -130,8 +166,8 @@ export function Catalog({ children }: { children: ReactNode }) {
         <div className="filters" role="group" aria-label="Filtrar catálogo">
           {([
             ["all", "Tudo"],
-            ["race", "Raças & Origins"],
-            ["class", "Classes"],
+            ["race", "🧬 Raças & Origins"],
+            ["class", "⚔️ Classes"],
           ] as const).map(([value, label]) => (
             <button
               key={value}
@@ -147,12 +183,36 @@ export function Catalog({ children }: { children: ReactNode }) {
 
       <p className="result-count">
         {entries.length} {entries.length === 1 ? "resultado encontrado" : "resultados encontrados"}
+        {filter === "all" && ` — ${races.length} raças & origins, ${classes.length} classes`}
       </p>
 
       {entries.length > 0 ? (
-        <section className="grid" aria-live="polite">
-          {entries.map((entry) => <EntryCard key={`${entry.type}-${entry.id}`} entry={entry} />)}
-        </section>
+        <>
+          {(filter === "all" || filter === "race") && races.length > 0 && (
+            <section className="section-block" aria-label="Raças e Origins">
+              <div className="section-divider">
+                <span className="divider-race">🧬</span>
+                <h3 className="divider-title">Raças & Origins</h3>
+                <span className="divider-count">{races.length}</span>
+              </div>
+              <div className="grid" aria-live="polite">
+                {races.map((entry) => <EntryCard key={`race-${entry.id}`} entry={entry} />)}
+              </div>
+            </section>
+          )}
+          {(filter === "all" || filter === "class") && classes.length > 0 && (
+            <section className="section-block" aria-label="Classes">
+              <div className="section-divider">
+                <span className="divider-class">⚔️</span>
+                <h3 className="divider-title">Classes</h3>
+                <span className="divider-count">{classes.length}</span>
+              </div>
+              <div className="grid" aria-live="polite">
+                {classes.map((entry) => <EntryCard key={`class-${entry.id}`} entry={entry} />)}
+              </div>
+            </section>
+          )}
+        </>
       ) : (
         <section className="empty">
           <span>🔮</span>
@@ -169,6 +229,10 @@ export function Catalog({ children }: { children: ReactNode }) {
 
 function EntryCard({ entry }: { entry: Entry }) {
   const isRace = entry.type === "race";
+  const modKey = getModKey(entry.icon ?? "");
+  const modLabel = modLabels[modKey] ?? entry.mod.replace(/\.jar$/i, "");
+  const modColor = modColors[modKey] ?? "var(--gold)";
+
   return (
     <article className={`card ${entry.type}`} id={entry.anchor}>
       <div className="card-top">
@@ -180,11 +244,14 @@ function EntryCard({ entry }: { entry: Entry }) {
                 width={48}
                 height={48}
                 alt={`Ícone de ${entry.name}`}
-                title={entry.iconItem}
+                title={entry.iconItem ?? modLabel}
               />
             </span>
           )}
-          <span className="type">{isRace ? "🧬 Raça / Origin" : "⚔️ Classe"}</span>
+          <div className="card-badges">
+            <span className="type">{isRace ? "🧬 Raça / Origin" : "⚔️ Classe"}</span>
+            <span className="mod-badge" style={{ color: modColor }}>{modLabel}</span>
+          </div>
         </div>
         <span className="impact">{entry.impact}</span>
       </div>
@@ -193,23 +260,31 @@ function EntryCard({ entry }: { entry: Entry }) {
       <p className="description">{entry.description}</p>
       <div className="meta">
         <span>✦ {entry.powers.length} {entry.powers.length === 1 ? "poder" : "poderes"}</span>
-        <span title={entry.mod}>📦 {entry.mod.replace(/\.jar$/i, "")}</span>
+        <span title={entry.mod}>📦 {entry.mod.replace(/\.jar$/i, "").substring(0, 30)}</span>
       </div>
       <details>
-        <summary>Ver poderes e detalhes <span>＋</span></summary>
+        <summary>
+          Ver poderes e detalhes
+          <span className="summary-plus">＋</span>
+        </summary>
         <div className="details-body">
-          <p className="technical"><strong>ID:</strong> <code>{entry.id}</code></p>
+          <p className="technical"><strong>ID técnico:</strong> <code>{entry.id}</code></p>
           {entry.powers.length > 0 ? (
             <ul className="powers">
               {entry.powers.map((power) => (
                 <li key={power.id}>
-                  <h3>{power.name} {likelyActive(power) && <mark>habilidade ativa</mark>}</h3>
+                  <h3>
+                    {power.name}
+                    {likelyActive(power) && <mark>habilidade ativa</mark>}
+                  </h3>
                   <p>{power.description}</p>
                   <code>{power.id}</code>
                 </li>
               ))}
             </ul>
-          ) : <p>Nenhum poder separado foi informado pelo complemento.</p>}
+          ) : (
+            <p>Nenhum poder separado foi informado pelo complemento.</p>
+          )}
         </div>
       </details>
     </article>
