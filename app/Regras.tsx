@@ -10,14 +10,15 @@ const sections = [
       ["Diamante", "Equivale a 10 moedas de esmeralda"],
       ["Netherita", "Equivale a 10 moedas de diamante"],
       ["Carteira", "Guarda e organiza suas moedas (botão direito)"],
+      ["Saldo inicial", "Você entra com 5 moedas de cobre + 1 de ferro"],
     ],
   },
   {
     icon: "💱",
     title: "Como ganhar dinheiro",
     items: [
+      ["Derrote inimigos", "Mobs dropam moedas automaticamente ao morrer"],
       ["Venda itens", "Aos comerciantes em vilas ou a outros jogadores"],
-      ["Derrote inimigos", "Bosses e criaturas dropam moedas"],
       ["Explore estruturas", "Baús de masmorras contêm moedas"],
       ["Comércio entre players", "Negocie com /trade"],
       ["Lojas de jogadores", "Monte seu balcão com /shop"],
@@ -27,10 +28,11 @@ const sections = [
     icon: "🏪",
     title: "Lojas do servidor",
     items: [
+      ["SDM Shop 2", "Loja principal — abra com a tecla 'Open Shop' (SDM Shop 2)"],
+      ["/sdm_shop", "Comando da loja (admin/abertura)"],
       ["/shop", "Abrir ou montar seu balcão de vendas"],
       ["/trade", "Negociar diretamente com outro jogador"],
       ["ATM", "Sacar e depositar moedas (12 slots de atalho)"],
-      ["Carteira", "Exibe seu saldo no canto da tela"],
       ["Coin Mint", "Desativada — moedas só circulam pelo comércio"],
     ],
   },
@@ -39,6 +41,7 @@ const sections = [
     title: "Regras do servidor",
     items: [
       ["Origem escolhida", "Use a Orbe da Origem para selecionar ou trocar"],
+      ["Orbe da Origem", "À venda na SDM Shop por um preço alto (moedas de alto nível)"],
       ["AFK automático", "Fique parado por 3 minutos para seu personagem deitar"],
       ["Proibido cunhar", "A Coin Mint está desativada — dinheiro circula pelo comércio"],
       ["Respeito", "Mantenha o clima de roleplay dentro do servidor"],
