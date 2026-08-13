@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Catalog } from "./Catalog";
 import { Keybinds } from "./Keybinds";
+import { Regras } from "./Regras";
 
 export const metadata: Metadata = {
   title: "Atlas de Raças & Classes | Valtheria RP",
@@ -19,6 +20,7 @@ export default function Home() {
           </a>
           <div className="nav-links">
             <a className="nav-link" href="#catalogo">Catálogo ↓</a>
+            <a className="nav-link" href="#regras">Guia & Regras ↓</a>
             <a className="nav-link" href="#atalhos-mods">Atalhos ↓</a>
           </div>
         </nav>
@@ -43,6 +45,8 @@ export default function Home() {
         <div className="rune" aria-hidden="true">✦</div>
         <div className="rune rune-2" aria-hidden="true">◆</div>
       </header>
+
+      <Regras />
 
       <Catalog>
         <section className="hotkeys" aria-labelledby="atalhos-title">

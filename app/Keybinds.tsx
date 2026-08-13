@@ -19,7 +19,7 @@ const groups = [
     keys: [
       ["Y", "Habilidade ativa primária"],
       ["H", "Habilidade ativa secundária"],
-      ["Alt + Y", "Terceira habilidade (RPG Origins)"],
+      ["´ (crase)", "Terceira habilidade (RPG Origins)"],
       ["Alt + U", "Quarta habilidade (RPG Origins)"],
       ["Alt + O", "Ver ficha da sua Origem"],
       ["G", "Habilidade especial Alex's Caves"],
@@ -28,20 +28,14 @@ const groups = [
   {
     name: "ParCool",
     icon: "🏃",
-    note: "Parkour, movimentos e escalada",
+    note: "Parkour e escalada (configurado)",
     keys: [
       ["Shift + P", "Ativar / desativar o ParCool"],
-      ["Ctrl (segurar)", "Corrida rápida"],
-      ["C", "Rastejar"],
       ["Shift + Espaço", "Pulo na parede (Wall Jump)"],
-      ["Shift + V", "Ultrapassar obstáculo (Vault)"],
-      ["Shift + R", "Esquiva (Dodge)"],
-      ["Alt esquerdo", "Amortecer queda (Breakfall)"],
-      ["Ctrl + F5", "Corrida horizontal na parede"],
-      ["Mouse 5", "Ficar pendurado"],
-      ["Ctrl + Mouse direito", "Usar tirolesa (Zipline)"],
+      ["Botão direito", "Agarrar-se à parede (Cling)"],
+      ["Mouse 5", "Ficar pendurado (Hang Down)"],
+      ["Z", "Giro no ar (Flipping)"],
       ["Shift + O", "Abrir configurações"],
-      ["Shift + F8", "Esconder-se dentro do bloco"],
     ],
   },
   {
@@ -146,13 +140,23 @@ const groups = [
   {
     name: "Shaders & Visual",
     icon: "🌅",
-    note: "Oculus, Ok Zoomer e Placebo",
+    note: "Ok Zoomer, câmera e visual",
     keys: [
-      ["O", "Abrir / fechar tela de shaders"],
-      ["K", "Alternar shader"],
       ["Ctrl + Z", "Zoom (Ok Zoomer)"],
-      ["Keypad 8", "Alternar asas Patreon"],
-      ["Keypad 9", "Alternar trilhas Patreon"],
+      ["= / -", "Ajustar zoom (quando ativo)"],
+      ["F5", "Alternar 1ª / 3ª pessoa"],
+      ["F7", "Câmera de dragão (Ice and Fire)"],
+    ],
+  },
+  {
+    name: "Planador",
+    icon: "🪂",
+    note: "VC Gliders — voe pelo mundo",
+    keys: [
+      ["Caída / pulo", "Abrir o planador automaticamente"],
+      ["Espaço", "Ganhar altitude / planar"],
+      ["Slot de curiosidade", "Equipar o planador (Ctrl + U)"],
+      ["Cobre / Netherita", "Melhorias de resistência e velocidade"],
     ],
   },
   {
@@ -206,7 +210,8 @@ export function Keybinds() {
       <div className="keybind-tip">
         <strong>💡 Dica:</strong> Se alguma tecla parecer não funcionar, confira em
         <em> Opções → Controles</em> se não há conflito entre mods. Para o dragão do Ice and Fire
-        o Cajado de Comando substitui atalhos de sentar/levantar.
+        o Cajado de Comando substitui atalhos de sentar/levantar. Os atalhos do ParCool foram
+        reduzidos aos essenciais (Wall Jump, Cling, Hang Down e Flipping) para evitar conflitos.
       </div>
     </section>
   );
