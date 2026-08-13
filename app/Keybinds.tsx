@@ -31,10 +31,32 @@ const groups = [
     keys: [
       ["Shift + P", "Ativar / desativar o ParCool"],
       ["Shift + Espaço", "Pulo na parede (Wall Jump)"],
-      ["Botão direito", "Agarrar-se à parede (Cling)"],
+      ["Espaço", "Deslizar na parede (Wall Slide)"],
+      ["Shift + R", "Esquiva (Dodge)"],
+      ["Shift + V", "Vault / subir obstáculos"],
+      ["Alt", "Breakfall (amortecer queda)"],
       ["Mouse 5", "Ficar pendurado (Hang Down)"],
-      ["Z", "Giro no ar (Flipping)"],
       ["Shift + O", "Abrir configurações"],
+    ],
+  },
+  {
+    name: "SDM Shop 2",
+    icon: "🏪",
+    note: "Loja do servidor — moedas (SDMEconomy)",
+    keys: [
+      ["Tecla Open Shop", "Abrir a loja (Opções → Controles → SDM Shop 2)"],
+      ["/sdm_shop", "Comando da loja (admin/abertura)"],
+    ],
+  },
+  {
+    name: "Hiccup's Legacy",
+    icon: "🐲",
+    note: "Como Treinar Seu Dragão — domar e criar",
+    keys: [
+      ["Manual do Dragão", "Livro com as informações de todas as espécies"],
+      ["Ovo do Dragão", "Eclode no seu dragão companheiro"],
+      ["Alimentar", "Domar e treinar seu dragão com comida correta"],
+      ["Equipamentos", "Armaduras e armas de estilo viking/dragão"],
     ],
   },
   {
@@ -139,11 +161,11 @@ const groups = [
   {
     name: "Câmera (Shoulder Surfing)",
     icon: "🎥",
-    note: "Visão lateral estilo 3ª pessoa",
+    note: "Visão lateral estilo 3ª pessoa — distância ajustável",
     keys: [
       ["F5", "Alternar para a câmera lateral (perspectiva padrão)"],
       ["← / →", "Ajustar câmera para a esquerda / direita"],
-      ["↑ / ↓", "Aproximar / afastar a câmera"],
+      ["↑ / ↓", "Aproximar / afastar a câmera (distância)"],
       ["Page Up / Down", "Subir / descer a câmera"],
       ["U", "Trocar de ombro"],
     ],
@@ -151,12 +173,13 @@ const groups = [
   {
     name: "Shaders & Visual",
     icon: "🌅",
-    note: "Ok Zoomer, câmera e visual",
+    note: "Complementary Unbound ativado — Ok Zoomer e câmera",
     keys: [
       ["Ctrl + Z", "Zoom (Ok Zoomer)"],
       ["= / -", "Ajustar zoom (quando ativo)"],
       ["F5", "Alternar 1ª / 3ª pessoa (lateral)"],
       ["F7", "Câmera de dragão (Ice and Fire)"],
+      ["F3 + S", "Recarregar shaderpack"],
     ],
   },
   {
