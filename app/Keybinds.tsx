@@ -4,10 +4,9 @@ const groups = [
     icon: "🐉",
     note: "Dragões, montaria e sopro elemental",
     keys: [
-      ["R / Ctrl + R", "Bafo de Fogo do Dragão (ataque principal)"],
-      ["Ctrl + Mouse esquerdo", "Ataque físico / mordida do dragão"],
-      ["Espaço", "Subir enquanto estiver voando"],
-      ["Alt + Page Down", "Descer / remover bebê do ombro"],
+      ["R", "Bafo de Fogo do Dragão (ataque principal)"],
+      ["R", "Ataque físico / mordida do dragão"],
+      ["Ctrl", "Descer enquanto estiver voando"],
       ["F7", "Alternar câmera para 3ª pessoa"],
       ["Cajado de Comando", "Mandar sentar, seguir ou virar guarda (item)"],
     ],
@@ -63,7 +62,7 @@ const groups = [
     note: "Progressão vampírica e habilidades",
     keys: [
       ["Alt + P", "Abrir menu de habilidades vampíricas"],
-      ["Alt + V", "Chupar sangue (Suck Blood)"],
+      ["V", "Chupar sangue (Suck Blood)"],
       ["Alt + R", "Usar ação selecionada"],
       ["Alt + N", "Mudar visão (Noturna / Sangue)"],
       ["Alt + C", "Selecionar tipo de flecha"],
@@ -88,10 +87,10 @@ const groups = [
     icon: "📖",
     note: "Just Enough Items – receitas e usos",
     keys: [
-      ["R", "Ver receita do item"],
-      ["U", "Ver usos do item"],
+      ["R", "Ver usos do item"],
+      ["Botão esquerdo (no item)", "Ver receita do item"],
       ["Ctrl + O", "Esconder / mostrar overlay"],
-      ["Shift + Mouse esquerdo", "Craftar receita marcada"],
+      ["Shift + Botão esquerdo", "Craftar receita marcada"],
       ["Ctrl + F", "Selecionar barra de busca"],
       ["Page Up / Page Down", "Página de receita anterior / próxima"],
       ["Shift + Page Up / Down", "Categoria anterior / próxima"],
@@ -138,13 +137,25 @@ const groups = [
     ],
   },
   {
+    name: "Câmera (Shoulder Surfing)",
+    icon: "🎥",
+    note: "Visão lateral estilo 3ª pessoa",
+    keys: [
+      ["F5", "Alternar para a câmera lateral (perspectiva padrão)"],
+      ["← / →", "Ajustar câmera para a esquerda / direita"],
+      ["↑ / ↓", "Aproximar / afastar a câmera"],
+      ["Page Up / Down", "Subir / descer a câmera"],
+      ["U", "Trocar de ombro"],
+    ],
+  },
+  {
     name: "Shaders & Visual",
     icon: "🌅",
     note: "Ok Zoomer, câmera e visual",
     keys: [
       ["Ctrl + Z", "Zoom (Ok Zoomer)"],
       ["= / -", "Ajustar zoom (quando ativo)"],
-      ["F5", "Alternar 1ª / 3ª pessoa"],
+      ["F5", "Alternar 1ª / 3ª pessoa (lateral)"],
       ["F7", "Câmera de dragão (Ice and Fire)"],
     ],
   },
@@ -162,15 +173,12 @@ const groups = [
   {
     name: "Outros úteis",
     icon: "🛠️",
-    note: "Corpse, Deeper and Darker, Immersive Aircraft",
+    note: "Corpse, Dragon Mounts e MCA",
     keys: [
       ["Shift + U", "Histórico de mortes (Corpse)"],
-      ["B", "Boost Soul Elytra (Deeper and Darker)"],
-      ["V", "Sculk Transmitter (Deeper and Darker)"],
-      ["Ctrl + M", "Desmontar aeronave (Immersive)"],
-      ["Alt + F", "Impulso de foguete (Immersive)"],
       ["F6", "Comandos de voo (Dragon Mounts)"],
       ["Ctrl + Page Down", "Descer (Dragon Mounts)"],
+      ["Shift + F6", "Biblioteca de skins (MCA)"],
     ],
   },
 ];
@@ -206,12 +214,6 @@ export function Keybinds() {
             </dl>
           </article>
         ))}
-      </div>
-      <div className="keybind-tip">
-        <strong>💡 Dica:</strong> Se alguma tecla parecer não funcionar, confira em
-        <em> Opções → Controles</em> se não há conflito entre mods. Para o dragão do Ice and Fire
-        o Cajado de Comando substitui atalhos de sentar/levantar. Os atalhos do ParCool foram
-        reduzidos aos essenciais (Wall Jump, Cling, Hang Down e Flipping) para evitar conflitos.
       </div>
     </section>
   );

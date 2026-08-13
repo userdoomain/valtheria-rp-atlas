@@ -42,6 +42,15 @@ export default function Home() {
             <span><strong>100%</strong> em português</span>
           </div>
         </div>
+        <div className="hero-photo">
+          <Image
+            src="/valtheria-atlas-social.png"
+            width={1728}
+            height={909}
+            alt="Valtheria RP — Reino em roleplay"
+            priority
+          />
+        </div>
         <div className="rune" aria-hidden="true">✦</div>
         <div className="rune rune-2" aria-hidden="true">◆</div>
       </header>
@@ -75,9 +84,16 @@ export default function Home() {
               </span>
             </div>
             <div className="key-row">
-              <kbd>Alt + Y</kbd>
+              <kbd>´</kbd>
               <span>
                 <strong>Terceira habilidade</strong>
+                <small>RPG Origins apenas</small>
+              </span>
+            </div>
+            <div className="key-row">
+              <kbd>Alt + U</kbd>
+              <span>
+                <strong>Quarta habilidade</strong>
                 <small>RPG Origins apenas</small>
               </span>
             </div>
