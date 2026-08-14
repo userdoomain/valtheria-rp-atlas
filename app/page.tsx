@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Catalog } from "./Catalog";
 import { Keybinds } from "./Keybinds";
+import { Mods } from "./Mods";
 import { Regras } from "./Regras";
 
 export const metadata: Metadata = {
   title: "Atlas de Raças & Classes | Valtheria RP",
   description:
-    "Consulte em português todas as raças, Origins, classes, poderes e atalhos de teclado do modpack Valtheria RP.",
+    "Consulte em português a wiki de mods, todas as raças, Origins, classes, poderes e atalhos de teclado do modpack Valtheria RP.",
 };
 
 export default function Home() {
@@ -19,6 +20,7 @@ export default function Home() {
             <Image src="/valtheria-logo-optimized.png" width={900} height={309} alt="Valtheria RP" priority />
           </a>
           <div className="nav-links">
+            <a className="nav-link" href="#mods">Mods ↓</a>
             <a className="nav-link" href="#catalogo">Catálogo ↓</a>
             <a className="nav-link" href="#regras">Guia & Regras ↓</a>
             <a className="nav-link" href="#atalhos-mods">Atalhos ↓</a>
@@ -28,8 +30,8 @@ export default function Home() {
           <p className="eyebrow">✦ GUIA OFICIAL DO MODPACK ✦</p>
           <h1>Atlas de <em>Valtheria</em></h1>
           <p className="lead">
-            O grimório definitivo do servidor: todas as 44 raças, Origins,
-            32 classes e mais de 160 atalhos de teclado — pesquisáveis,
+            O grimório definitivo do servidor: wiki de todos os mods, 44 raças,
+            Origins, 32 classes e mais de 160 atalhos de teclado — pesquisáveis,
             traduzidos para português e sempre atualizados conforme o modpack.
           </p>
           <div className="stats">
@@ -54,6 +56,8 @@ export default function Home() {
         <div className="rune" aria-hidden="true">✦</div>
         <div className="rune rune-2" aria-hidden="true">◆</div>
       </header>
+
+      <Mods />
 
       <Regras />
 
