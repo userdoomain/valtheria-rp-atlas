@@ -48,6 +48,16 @@ const sections = [
     ],
   },
   {
+    icon: "🏘️",
+    title: "Vila & NPCs (MCA)",
+    items: [
+      ["/villager <profissão>", "Spawn de villager MCA com a profissão escolhida (requer OP). Ex.: /villager guard, /villager librarian"],
+      ["Profissões MCA", "guard, archer, adventurer, mercenary, cultist e outlaw + as 13 profissões vanilla (ferreiro, bibliotecário, etc.)"],
+      ["Watut", "Reativado: veja quando outros jogadores digitam, abrem menus, usam animações e tocam sons"],
+      ["Câmera F5", "F5 agora alterna para a câmera lateral (Shoulder Surfing) — ajuste com as setas"],
+    ],
+  },
+  {
     icon: "⚔️",
     title: "Comandos essenciais",
     items: [
