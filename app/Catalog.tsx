@@ -234,7 +234,7 @@ function EntryCard({ entry }: { entry: Entry }) {
   const modColor = modColors[modKey] ?? "var(--gold)";
 
   return (
-    <article className={`card ${entry.type}`} id={entry.anchor}>
+    <article className={`card ${entry.type}`} id={entry.anchor} data-reveal>
       <div className="card-top">
         <div className="card-identity">
           {entry.icon && (
