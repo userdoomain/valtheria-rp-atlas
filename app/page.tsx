@@ -2,13 +2,11 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Catalog } from "./Catalog";
 import { Keybinds } from "./Keybinds";
-import { Mods } from "./Mods";
-import { Regras } from "./Regras";
 
 export const metadata: Metadata = {
   title: "Atlas de Raças & Classes | Valtheria RP",
   description:
-    "Consulte em português a wiki de mods, todas as raças, Origins, classes, poderes e atalhos de teclado do modpack Valtheria RP.",
+    "Consulte em português todas as raças, Origins, classes, poderes e atalhos de teclado do modpack Valtheria RP.",
 };
 
 export default function Home() {
@@ -20,18 +18,16 @@ export default function Home() {
             <Image src="/valtheria-logo-optimized.png" width={900} height={309} alt="Valtheria RP" priority />
           </a>
           <div className="nav-links">
-            <a className="nav-link" href="#mods">Mods ↓</a>
             <a className="nav-link" href="#catalogo">Catálogo ↓</a>
-            <a className="nav-link" href="#regras">Guia & Regras ↓</a>
             <a className="nav-link" href="#atalhos-mods">Atalhos ↓</a>
           </div>
         </nav>
-        <div className="hero-copy">
+        <div className="hero-copy" data-reveal>
           <p className="eyebrow">✦ GUIA OFICIAL DO MODPACK ✦</p>
           <h1>Atlas de <em>Valtheria</em></h1>
           <p className="lead">
-            O grimório definitivo do servidor: wiki de todos os mods, 44 raças,
-            Origins, 32 classes e mais de 160 atalhos de teclado — pesquisáveis,
+            O grimório definitivo do servidor: todas as 44 raças, Origins,
+            32 classes e mais de 160 atalhos de teclado — pesquisáveis,
             traduzidos para português e sempre atualizados conforme o modpack.
           </p>
           <div className="stats">
@@ -44,25 +40,22 @@ export default function Home() {
             <span><strong>100%</strong> em português</span>
           </div>
         </div>
-        <div className="hero-photo">
-          <Image
-            src="/valtheria-atlas-social.png"
-            width={1728}
-            height={909}
-            alt="Valtheria RP — Reino em roleplay"
-            priority
-          />
-        </div>
         <div className="rune" aria-hidden="true">✦</div>
         <div className="rune rune-2" aria-hidden="true">◆</div>
+        <div className="sparkles" aria-hidden="true">
+          <i className="sparkle s1" />
+          <i className="sparkle s2" />
+          <i className="sparkle s3" />
+          <i className="sparkle s4" />
+          <i className="sparkle s5" />
+          <i className="sparkle s6" />
+          <i className="sparkle s7" />
+          <i className="sparkle s8" />
+        </div>
       </header>
 
-      <Mods />
-
-      <Regras />
-
       <Catalog>
-        <section className="hotkeys" aria-labelledby="atalhos-title">
+        <section className="hotkeys" aria-labelledby="atalhos-title" data-reveal>
           <div>
             <p className="section-kicker">ATALHOS ESSENCIAIS</p>
             <h2 id="atalhos-title">Como ativar seus poderes</h2>
@@ -88,16 +81,9 @@ export default function Home() {
               </span>
             </div>
             <div className="key-row">
-              <kbd>´</kbd>
+              <kbd>Alt + Y</kbd>
               <span>
                 <strong>Terceira habilidade</strong>
-                <small>RPG Origins apenas</small>
-              </span>
-            </div>
-            <div className="key-row">
-              <kbd>Alt + U</kbd>
-              <span>
-                <strong>Quarta habilidade</strong>
                 <small>RPG Origins apenas</small>
               </span>
             </div>
@@ -111,7 +97,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="how-to" aria-labelledby="como-usar-title">
+        <section className="how-to" aria-labelledby="como-usar-title" data-reveal>
           <p className="section-kicker">PASSO A PASSO</p>
           <h2 id="como-usar-title">Como usar uma habilidade</h2>
           <ol>
@@ -163,7 +149,7 @@ export default function Home() {
         <Keybinds />
       </Catalog>
 
-      <footer>
+      <footer data-reveal>
         <span className="brand brand-image footer-logo">
           <Image src="/valtheria-logo-optimized.png" width={900} height={309} alt="Valtheria RP" />
         </span>
