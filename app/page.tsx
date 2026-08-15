@@ -23,7 +23,6 @@ export default function Home() {
           </div>
         </nav>
         <div className="hero-copy" data-reveal>
-          <p className="eyebrow">✦ GUIA OFICIAL DO MODPACK ✦</p>
           <h1>Atlas de <em>Valtheria</em></h1>
           <p className="lead">
             O grimório definitivo do servidor: todas as 44 raças, Origins,
